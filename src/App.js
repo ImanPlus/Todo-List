@@ -2,27 +2,28 @@ import React, {useState} from 'react';
 import './css/App.css';
 
 import TodoList from './Component/TodoList';
+import AddTodo from "./Component/AddTodo";
 
 function App() {
   ///-------- State --------///
   const [todos, setTodos] = useState([
     {
-      id: '1',
+      id: 1,
       text: 'Meet the mother',
       isComplete: false,
-      linPic: 'https://lh3.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1',
+      linkPic: 'https://lh3.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1',
     },
     {
-      id: '2',
+      id: 2,
       text: 'Go to the car wash',
       isComplete: false,
-      linPic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Firefox_Logo%2C_2017.svg/1200px-Firefox_Logo%2C_2017.svg.png',
+      linkPic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Firefox_Logo%2C_2017.svg/1200px-Firefox_Logo%2C_2017.svg.png',
     },
     {
-      id: '3',
+      id: 3,
       text: 'Book reading',
       isComplete: false,
-      linPic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1000px-Apple_logo_black.svg.png',
+      linkPic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1000px-Apple_logo_black.svg.png',
     },
   ]);
   ///-------- Handle Function --------///
@@ -34,6 +35,15 @@ function App() {
   const toRemove = index => {
     const newtodo = [...todos]
     newtodo.splice(index, 1);
+    setTodos(newtodo);
+  }
+  const toAdd = (text) => {
+    const newtodo = [...todos, {
+      id: todos.length + 1,
+      text: text,
+      isComplete: false,
+      linkPic: '',
+    }];
     setTodos(newtodo);
   }
   ///-------- Return App --------///
@@ -52,8 +62,9 @@ function App() {
             />
           )
         }
+        <AddTodo toAdd={toAdd}/>
       </div>
-
+      {console.log('Todos: ', todos)}
     </div>
   );
 }
