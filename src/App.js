@@ -25,7 +25,12 @@ function App() {
       linPic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1000px-Apple_logo_black.svg.png',
     },
   ]);
-
+  ///-------- Handle Function --------///
+  const isComplete = index =>{
+    const newtodo = [...todos];
+    newtodo[index].isComplete = true;
+    setTodos(newtodo);
+  }
   return (
     <div className="app">
       <div className="header"><p>(( To-Do list -- Add, Edit, Delete))</p></div>
@@ -36,7 +41,7 @@ function App() {
             key={index}
             index={index}
             todo={todo}
-
+            isComplete={isComplete}
           />
           )
         }
