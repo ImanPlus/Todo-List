@@ -1,16 +1,23 @@
 import React from "react";
 
-export default function TodoList({index, todo, isComplete}) {
+export default function TodoList({index, todo, isComplete, toRemove}) {
   return (
     <div className="todo">
       <div style={{textDecoration: todo.isComplete ? 'line-through' : ''}}>
         {todo.text}
       </div>
       {console.log('isComplete: ', todo)}
-      <button onClick={() => {
-        isComplete(index)
-      }}>Complete
-      </button>
+      <div>
+        <button onClick={() => {
+          isComplete(index)
+        }}>Complete
+        </button>
+        <button onClick={() => {
+          toRemove(index)
+        }}>Remove
+        </button>
+      </div>
+
     </div>
   )
 }
