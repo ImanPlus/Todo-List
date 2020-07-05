@@ -26,23 +26,30 @@ function App() {
     },
   ]);
   ///-------- Handle Function --------///
-  const isComplete = index =>{
+  const isComplete = index => {
     const newtodo = [...todos];
     newtodo[index].isComplete = true;
     setTodos(newtodo);
   }
+  const toRemove = index => {
+    const newtodo = [...todos]
+    newtodo.splice(index, 1);
+    setTodos(newtodo);
+  }
+  ///-------- Return App --------///
   return (
     <div className="app">
       <div className="header"><p>(( To-Do list -- Add, Edit, Delete))</p></div>
       <div className="todo-list">
         {
           todos.map((todo, index) =>
-          <TodoList
-            key={index}
-            index={index}
-            todo={todo}
-            isComplete={isComplete}
-          />
+            <TodoList
+              key={index}
+              index={index}
+              todo={todo}
+              isComplete={isComplete}
+              toRemove={toRemove}
+            />
           )
         }
       </div>
