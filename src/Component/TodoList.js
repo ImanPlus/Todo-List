@@ -8,11 +8,11 @@ export default function TodoList({index, todo, isComplete, toRemove}) {
       </div>
       {console.log('isComplete: ', todo)}
       <div>
-        <button onClick={() => {
+        <button className="button" onClick={() => {
           isComplete(index)
         }}>Complete
         </button>
-        <button onClick={() => {
+        <button className="button" onClick={() => {
           toRemove(index)
         }}>Remove
         </button>
