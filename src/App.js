@@ -28,7 +28,7 @@ function App() {
     },
   ]);
   const [word, setWord] = useState('');
-  const [searchResults, setSearchResults] = useState();
+  const [searchResults, setSearchResults] = useState([]);
   ///-------- Handle Function --------///
   const isComplete = index => {
     const newtodo = [...todos];
@@ -51,11 +51,8 @@ function App() {
   }
   const toSearch = searchValue => {
     setWord(searchValue);
-    // setResult(todos.filter(item => item.text.toLowerCase().indexOf(word)> -1));
-    // console.log('result: ',result);
   }
   useEffect(() => {
-
     const results = todos.filter(todo => todo.text.toLowerCase().includes(word));
     setSearchResults(results);
     console.log('results: ', results);
@@ -78,7 +75,6 @@ function App() {
           )
         }
         <AddTodo toAdd={toAdd}/>
-
       </div>
       {console.log('Todos: ', todos)}
     </div>
