@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './css/App.css';
 
 import TodoList from './Component/TodoList';
 import AddTodo from "./Component/AddTodo";
+import SearchBar from "./Component/SearchBar";
 
 function App() {
   ///-------- State --------///
@@ -26,6 +27,8 @@ function App() {
       linkPic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1000px-Apple_logo_black.svg.png',
     },
   ]);
+  const [word, setWord] = useState('');
+  const [searchResults, setSearchResults] = useState();
   ///-------- Handle Function --------///
   const isComplete = index => {
     const newtodo = [...todos];
@@ -46,13 +49,25 @@ function App() {
     }];
     setTodos(newtodo);
   }
+  const toSearch = searchValue => {
+    setWord(searchValue);
+    // setResult(todos.filter(item => item.text.toLowerCase().indexOf(word)> -1));
+    // console.log('result: ',result);
+  }
+  useEffect(() => {
+
+    const results = todos.filter(todo => todo.text.toLowerCase().includes(word));
+    setSearchResults(results);
+    console.log('results: ', results);
+  }, [word]);
   ///-------- Return App --------///
   return (
     <div className="app">
       <div className="header"><p>(( To-Do list -- Add, Edit, Delete))</p></div>
       <div className="todo-list">
+        <SearchBar toSearch={toSearch}/>
         {
-          todos.map((todo, index) =>
+          searchResults.map((todo, index) =>
             <TodoList
               key={index}
               index={index}
@@ -63,6 +78,7 @@ function App() {
           )
         }
         <AddTodo toAdd={toAdd}/>
+
       </div>
       {console.log('Todos: ', todos)}
     </div>
