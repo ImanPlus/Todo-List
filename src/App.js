@@ -60,7 +60,7 @@ function App() {
   ///-------- Return App --------///
   return (
     <div className="app">
-      <div className="header"><p>(( To-Do list -- Add, Edit, Delete))</p></div>
+      <div className="header"><p>(( To-Do list -- Add, Edit, Delete, Search))</p></div>
       <div className="todo-list">
         <SearchBar toSearch={toSearch}/>
         {
