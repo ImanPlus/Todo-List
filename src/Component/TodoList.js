@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TodoList({index, todo, isComplete, toRemove}) {
+export default function TodoList({index, todo, isComplete, toRemove, toUrlImage}) {
   return (
     <div className="todo">
       <div style={{textDecoration: todo.isComplete ? 'line-through' : ''}}>
