@@ -4,7 +4,7 @@ export default function TodoList({index, todo, isComplete, toRemove}) {
   return (
     <div className="todo">
       <div style={{textDecoration: todo.isComplete ? 'line-through' : ''}}>
-        {todo.text}
+        <div className="hover" onClick={() => toUrlImage(todo.linkPic)}> {todo.text}</div>
       </div>
       {console.log('isComplete: ', todo)}
       <div>
@@ -17,7 +17,6 @@ export default function TodoList({index, todo, isComplete, toRemove}) {
         }}>Remove
         </button>
       </div>
-
     </div>
   )
 }
