@@ -28,7 +28,6 @@ function App() {
     },
   ]);
   const [word, setWord] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
   ///-------- Handle Function --------///
   const isComplete = index => {
     const newtodo = [...todos];
@@ -46,31 +45,33 @@ function App() {
       text: text,
       isComplete: false,
       linkPic: '',
-    }];
+    }]
     setTodos(newtodo);
   }
   const toSearch = searchValue => {
     setWord(searchValue);
   }
-  useEffect(() => {
-    const results = todos.filter(todo => todo.text.toLowerCase().includes(word));
-    setSearchResults(results);
-    console.log('results: ', results);
-  }, [word]);
+  
   ///-------- Return App --------///
   return (
     <div className="app">
       <div className="header"><p>(( To-Do list -- Add, Edit, Delete, Search))</p></div>
       <div className="todo-list">
         <SearchBar toSearch={toSearch}/>
-        {
-          searchResults.map((todo, index) =>
+        {todos.filter((todo) => {
+          if (!word || word.length < 1) {
+            return true
+          }
+          return todo.text.toLowerCase().includes(word)
+        })
+          .map((todo, index) =>
             <TodoList
               key={index}
               index={index}
               todo={todo}
               isComplete={isComplete}
               toRemove={toRemove}
+
             />
           )
         }
