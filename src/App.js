@@ -4,6 +4,7 @@ import './css/App.css';
 import TodoList from './Component/TodoList';
 import AddTodo from "./Component/AddTodo";
 import SearchBar from "./Component/SearchBar";
+import DisplayImage from "./Component/Display Image";
 
 function App() {
   ///-------- State --------///
@@ -28,6 +29,7 @@ function App() {
     },
   ]);
   const [word, setWord] = useState('');
+  const [url, setUrl] = useState('');
   ///-------- Handle Function --------///
   const isComplete = index => {
     const newtodo = [...todos];
@@ -51,7 +53,14 @@ function App() {
   const toSearch = searchValue => {
     setWord(searchValue);
   }
-  
+  const toEdit = content => {
+    const newtodo = [...todos];
+    newtodo[content.index].text = content.text;
+    setTodos(newtodo);
+  }
+  const toUrlImage = urlImage => {
+    setUrl(urlImage);
+  }
   ///-------- Return App --------///
   return (
     <div className="app">
@@ -71,13 +80,15 @@ function App() {
               todo={todo}
               isComplete={isComplete}
               toRemove={toRemove}
-
+              toEdit={toEdit}
+              toUrlImage={toUrlImage}
             />
           )
         }
         <AddTodo toAdd={toAdd}/>
       </div>
       {console.log('Todos: ', todos)}
+      {url ? <DisplayImage toUrl={url}/> : ''}
     </div>
   );
 }
