@@ -5,6 +5,7 @@ import TodoList from './Component/TodoList';
 import AddTodo from "./Component/AddTodo";
 import SearchBar from "./Component/SearchBar";
 import DisplayImage from "./Component/Display Image";
+import EditTodo from "./Component/EditTodo";
 
 function App() {
   ///-------- State --------///
@@ -30,6 +31,8 @@ function App() {
   ]);
   const [word, setWord] = useState('');
   const [url, setUrl] = useState('');
+  const [editTodoObj, setEditTodoObj] = useState({});
+  const [indexEdit, setIndexEdit] = useState(-1);
   ///-------- Handle Function --------///
   const isComplete = index => {
     const newtodo = [...todos];
@@ -53,10 +56,21 @@ function App() {
   const toSearch = searchValue => {
     setWord(searchValue);
   }
+  const takeEditObj = todo => {
+    setEditTodoObj(todo);
+  }
+  const toIndexEdit = idx => {
+    setIndexEdit(idx);
+  }
   const toEdit = content => {
+    console.log('editTodoObj:', editTodoObj.id, editTodoObj)
+    console.log('indexof:', indexEdit)
+    console.log('content:', content)
     const newtodo = [...todos];
-    newtodo[content.index].text = content.text;
+    console.log('newtodo', newtodo)
+    newtodo[indexEdit].text = content;
     setTodos(newtodo);
+    setIndexEdit(-1);
   }
   const toUrlImage = urlImage => {
     setUrl(urlImage);
@@ -80,12 +94,18 @@ function App() {
               todo={todo}
               isComplete={isComplete}
               toRemove={toRemove}
-              toEdit={toEdit}
+              toEdit={takeEditObj}
               toUrlImage={toUrlImage}
+              toIndexEdit={toIndexEdit}
             />
           )
         }
         <AddTodo toAdd={toAdd}/>
+        <div className="todo-list">
+          {indexEdit !== -1 ? <EditTodo valueEditTodo={takeEditObj} toEdit={toEdit}/> : ''}
+          {console.log('indexEdit:',indexEdit)}
+        </div>
+
       </div>
       {console.log('Todos: ', todos)}
       {url ? <DisplayImage toUrl={url}/> : ''}
