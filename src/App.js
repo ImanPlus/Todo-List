@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './css/App.css';
 
 import TodoList from './Component/TodoList';
@@ -103,9 +103,8 @@ function App() {
         <AddTodo toAdd={toAdd}/>
         <div className="todo-list">
           {indexEdit !== -1 ? <EditTodo valueEditTodo={takeEditObj} toEdit={toEdit}/> : ''}
-          {console.log('indexEdit:',indexEdit)}
+          {console.log('indexEdit:', indexEdit)}
         </div>
-
       </div>
       {console.log('Todos: ', todos)}
       {url ? <DisplayImage toUrl={url}/> : ''}
