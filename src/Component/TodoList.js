@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TodoList({index, todo, isComplete, toRemove, toUrlImage}) {
+export default function TodoList({index, todo, isComplete, toRemove, toUrlImage, toEdit, toIndexEdit}) {
   return (
     <div className="todo">
       <div style={{textDecoration: todo.isComplete ? 'line-through' : ''}}>
@@ -15,6 +15,11 @@ export default function TodoList({index, todo, isComplete, toRemove, toUrlImage}
         <button className="button" onClick={() => {
           toRemove(index)
         }}>Remove
+        </button>
+        <button className="button" onClick={() => {
+          toEdit(todo)
+          toIndexEdit(index)
+        }}>Edit
         </button>
       </div>
     </div>
