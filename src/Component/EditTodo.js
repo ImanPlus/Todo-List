@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 export default function EditTodo({valueEditTodo, toEdit}) {
-  const [editValue, setEditValue] = useState('valueEditTodo.text');
+  const [editValue, setEditValue] = useState('');
   const handlSubmit = e => {
     e.preventDefault();
     toEdit(editValue);
